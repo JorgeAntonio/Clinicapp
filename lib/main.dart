@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+//FIREBASE
 import 'package:firebase_core/firebase_core.dart';
 //ROUTES
 import 'package:app_clinica/src/routes/routes.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: routes,
-      initialRoute: 'welcome',
+      initialRoute: 'introduction',
       title: 'ClinicApp',
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,

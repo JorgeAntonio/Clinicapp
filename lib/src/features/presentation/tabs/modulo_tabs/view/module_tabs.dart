@@ -9,7 +9,7 @@ class ModuloTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: blanco,
+          backgroundColor: myWhiteColor,
           title: Text('Clinicapp',
               style: TextStyle(
                   fontSize: isMobile(context) ? 32 : 45,

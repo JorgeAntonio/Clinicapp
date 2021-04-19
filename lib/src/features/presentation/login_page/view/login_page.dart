@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle.light.copyWith(statusBarColor: blanco));
+        SystemUiOverlayStyle.light.copyWith(statusBarColor: myWhiteColor));
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(
                         fontSize: isDesktop(context) ? 30 : 18,
                         fontWeight: FontWeight.w300,
-                        color: gris),
+                        color: myGreyColor),
                   ),
                   SizedBox(height: isMobile(context) ? 20 : 20),
                   Container(
@@ -112,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(
                           fontSize: isDesktop(context) ? 30 : 13,
                           fontWeight: FontWeight.w300,
-                          color: gris),
+                          color: myGreyColor),
                     ),
                   ),
                   SizedBox(height: isMobile(context) ? 20 : 20),
@@ -139,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(
                             fontSize: isDesktop(context) ? 30 : 13,
                             fontWeight: FontWeight.w300,
-                            color: gris),
+                            color: myGreyColor),
                       ),
                       GestureDetector(
                         onTap: () {

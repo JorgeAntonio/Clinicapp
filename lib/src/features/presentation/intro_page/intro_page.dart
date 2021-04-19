@@ -1,10 +1,41 @@
-import 'package:app_clinica/src/colors/colors.dart';
-import 'package:app_clinica/src/features/presentation/commons_widgets/buttons/main_button.dart';
-import 'package:flutter/material.dart';
 import 'package:app_clinica/responsive.dart';
+import 'package:app_clinica/src/colors/colors.dart';
+import 'package:app_clinica/src/features/presentation/welcome_page/view/welcome_page.dart';
+import 'package:flutter/material.dart';
+import 'package:page_indicator/page_indicator.dart';
+//HOOKS
+import 'package:flutter_hooks/flutter_hooks.dart';
 //COLORS
 
-class WelcomePage extends StatelessWidget {
+class IntroPage extends StatelessWidget {
+  static Widget create(BuildContext context) => IntroPage();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _IntroPager(),
+    );
+  }
+}
+
+class _IntroPager extends HookWidget {
+  @override
+  Widget build(BuildContext context) {
+    return PageIndicatorContainer(
+      child: PageView(
+        children: [
+          _DescriptionPage(),
+          _DescriptionPage(),
+          _DescriptionPage(),
+          WelcomePage(),
+        ],
+      ),
+      length: 4,
+    );
+  }
+}
+
+class _DescriptionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -75,24 +106,6 @@ class WelcomePage extends StatelessWidget {
                             color: myGreyColor),
                       ),
                       SizedBox(height: 20),
-                      Wrap(
-                        runSpacing: 10,
-                        children: <Widget>[
-                          MainButton(
-                              title: 'Continuar',
-                              tapEvent: () {
-                                Navigator.pushNamed(context, 'login');
-                              },
-                              color: myPrimaryColor),
-                          SizedBox(width: 10),
-                          MainButton(
-                              title: 'Saber más',
-                              tapEvent: () {
-                                Navigator.pushNamed(context, 'introduction');
-                              },
-                              color: mySecondaryColor)
-                        ],
-                      )
                     ],
                   ),
                 )),
