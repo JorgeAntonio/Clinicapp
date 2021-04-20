@@ -1,7 +1,9 @@
+import 'package:app_clinica/src/bloc/auth_cubit.dart';
 import 'package:app_clinica/src/colors/colors.dart';
-import 'package:app_clinica/src/features/presentation/commons_widgets/buttons/main_button.dart';
+import 'package:app_clinica/src/features/presentation/commons_widgets/buttons/login_button.dart';
 import 'package:flutter/material.dart';
 import 'package:app_clinica/responsive.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 //COLORS
 
 class WelcomePage extends StatelessWidget {
@@ -42,56 +44,69 @@ class WelcomePage extends StatelessWidget {
                                 fontWeight: FontWeight.w800,
                                 color: myPrimaryColor))
                       ])),
-                      SizedBox(height: 5),
-                      RichText(
-                          text: TextSpan(children: [
-                        /*TextSpan(
-                            text: 'ClinicApp',
-                            style: TextStyle(
-                                fontSize: isDesktop(context) ? 64 : 32,
-                                fontWeight: FontWeight.w800,
-                                color: verde)),*/
-                        TextSpan(
-                            text: 'Sientete ',
-                            style: TextStyle(
-                                fontSize: isDesktop(context) ? 64 : 32,
-                                fontWeight: FontWeight.w800,
-                                color: myTextColor)),
-                        TextSpan(
-                            text: 'seguro',
-                            style: TextStyle(
-                                fontSize: isDesktop(context) ? 64 : 32,
-                                fontWeight: FontWeight.w800,
-                                color: myTextColor)),
-                      ])),
+                      SizedBox(height: 10),
                       Text(
-                        'Somos una institucion de salud que promueve y restaura la salud integral de las personas.',
+                        'Ingresar o crear una cuenta.',
                         textAlign: isMobile(context)
                             ? TextAlign.center
                             : TextAlign.start,
                         style: TextStyle(
                             fontSize: isDesktop(context) ? 36 : 18,
-                            fontWeight: FontWeight.w300,
-                            color: myGreyColor),
+                            fontWeight: FontWeight.bold,
+                            color: myTextColor),
                       ),
                       SizedBox(height: 20),
-                      Wrap(
-                        runSpacing: 10,
-                        children: <Widget>[
-                          MainButton(
-                              title: 'Continuar',
-                              tapEvent: () {
+                      Padding(
+                        padding: EdgeInsets.only(
+                            right: !isMobile(context) ? 20 : 20,
+                            left: !isMobile(context) ? 0 : 20),
+                        child: Wrap(
+                          runSpacing: 10,
+                          children: <Widget>[
+                            LoginButton(
+                              text: 'Ingresar con correo',
+                              imagePath: 'images/loginIcon.png',
+                              color: myPrimaryColor,
+                              textColor: myWhiteColor,
+                              onTap: () {
                                 Navigator.pushNamed(context, 'login');
                               },
-                              color: myPrimaryColor),
-                          SizedBox(width: 10),
-                          MainButton(
-                              title: 'Saber más',
-                              tapEvent: () {
-                                Navigator.pushNamed(context, 'introduction');
-                              },
-                              color: mySecondaryColor)
-                        ],
+                            ),
+                            LoginButton(
+                              text: 'Ingresar con Google',
+                              imagePath: 'images/loginIcon.png',
+                              color: myWhiteColor,
+                              textColor: myGreyColor,
+                              onTap: () {},
+                            ),
+                            LoginButton(
+                              text: 'Ingresar con Facebook',
+                              imagePath: 'images/loginIcon.png',
+                              color: myBlueColor,
+                              textColor: myWhiteColor,
+                              onTap: () {},
+                            ),
+                            LoginButton(
+                              text: 'Ingresar anonimamente',
+                              imagePath: 'images/loginIcon.png',
+                              color: myTextColor,
+                              textColor: myWhiteColor,
+                              onTap: () =>
+                                  context.read<AuthCubit>().signInAnonymously(),
+                            ),
+                            SizedBox(height: 40),
+                            Container(
+                              alignment: Alignment.center,
+                              child: OutlinedButton(
+                                child: Text('Crear una cuenta',
+                                    style: TextStyle(color: myTextColor)),
+                                onPressed: () {
+                                  Navigator.pushNamed(context, 'singin');
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
                       )
                     ],
                   ),

@@ -8,6 +8,7 @@ import 'package:app_clinica/src/colors/colors.dart';
 import 'package:app_clinica/src/features/presentation/tabs/modulo_tabs/view/module_tabs.dart';
 
 class TabsPage extends StatefulWidget {
+  static Widget create(BuildContext context) => TabsPage();
   @override
   _TabsPageState createState() => _TabsPageState();
 }

@@ -10,6 +10,7 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this._authRepository) : super(AuthInitialState());
 
   Future<void> init() async {
+    await Future.delayed(Duration(seconds: 3));
     _authSubscription =
         _authRepository.onAuthStateChanged.listen(_authStateChanged);
   }
@@ -32,6 +33,11 @@ class AuthCubit extends Cubit<AuthState> {
     } catch (e) {
       emit(AuthError('Error: ${e.toString()}'));
     }
+  }
+
+  Future<void> signOut() async {
+    await _authRepository.signOut();
+    emit(AuthSignOut());
   }
 
   @override
