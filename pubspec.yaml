@@ -34,7 +34,9 @@ dependencies:
   flutter_bloc: ^7.0.0
   page_indicator: ^0.4.1
   flutter_hooks: ^0.16.0
-
+  google_sign_in: ^5.0.2
+  flutter_facebook_auth: ^3.3.2+2
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -24,6 +24,8 @@ class Routes {
   static const splash = "/";
   static const intro = "/introduction";
   static const tabs = "/tabs";
+  static const createAcount = "/createAcount";
+  static const signInEmail = "/signInEmail";
 
   static Route routes(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -33,6 +35,10 @@ class Routes {
         return _builtRoute(IntroPage.create);
       case tabs:
         return _builtRoute(TabsPage.create);
+      case createAcount:
+        return _builtRoute(SingInPage.create);
+      case signInEmail:
+        return _builtRoute(LoginPage.create);
       default:
         throw Exception('Route does not exist');
     }

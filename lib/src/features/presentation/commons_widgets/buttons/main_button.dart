@@ -23,7 +23,8 @@ class MainButton extends StatelessWidget {
                 EdgeInsets.symmetric(horizontal: 35, vertical: 15))),
         child: Text(
           title,
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.w600, fontSize: 18),
         ),
       ),
     );

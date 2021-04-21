@@ -1,187 +1,217 @@
 import 'package:app_clinica/responsive.dart';
+import 'package:app_clinica/src/bloc/auth_cubit.dart';
 import 'package:app_clinica/src/colors/colors.dart';
 import 'package:app_clinica/src/features/presentation/commons_widgets/buttons/main_button.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:app_clinica/src/routes/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SingInPage extends StatefulWidget {
+  static Widget create(BuildContext context) => SingInPage();
   @override
   _SingInPageState createState() => _SingInPageState();
 }
 
 class _SingInPageState extends State<SingInPage> {
-  String _email = '', _password = '';
-  final FirebaseAuth auth = FirebaseAuth.instance;
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
+  String? emailValidator(String? value) {
+    return (value == null || value.isEmpty) ? 'Este campo es necesario' : null;
+  }
+
+  String? passwordValidator(String? value) {
+    if (value == null || value.isEmpty) return 'Este campo es necesario';
+    if (value.length < 6)
+      return 'La contraseña debe tener al menos 6 caracteres';
+    if (_passwordController.text != _confirmPasswordController.text)
+      return 'Las contraseñas no coinciden';
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-          child: Container(
-        margin: EdgeInsets.symmetric(
-            vertical: isMobile(context) ? 20 : 70, horizontal: 40),
-        child: Form(
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.only(right: !isMobile(context) ? 40 : 0),
-                  child: Column(
-                    mainAxisAlignment: !isMobile(context)
-                        ? MainAxisAlignment.start
-                        : MainAxisAlignment.center,
-                    crossAxisAlignment: !isMobile(context)
-                        ? CrossAxisAlignment.start
-                        : CrossAxisAlignment.center,
-                    children: <Widget>[
-                      SizedBox(height: 10),
-                      RichText(
-                          text: TextSpan(children: [
-                        TextSpan(
-                            text: 'Registrarse',
-                            style: TextStyle(
-                                fontSize: isDesktop(context) ? 64 : 32,
-                                fontWeight: FontWeight.w800,
-                                color: myPrimaryColor))
-                      ])),
-                      SizedBox(height: isMobile(context) ? 5 : 10),
-                      Text(
-                        'Registrate con tus credenciales',
-                        textAlign: isMobile(context)
-                            ? TextAlign.center
-                            : TextAlign.start,
-                        style: TextStyle(
-                            fontSize: isDesktop(context) ? 30 : 18,
-                            fontWeight: FontWeight.w300,
-                            color: myGreyColor),
-                      ),
-                      SizedBox(height: isMobile(context) ? 20 : 20),
-                      Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.only(top: 10.0),
-                        padding: EdgeInsets.only(left: 10.0),
-                        decoration: BoxDecoration(
-                            color: Color.fromRGBO(142, 142, 147, 1.2),
-                            borderRadius: BorderRadius.circular(20.0)),
-                        child: TextFormField(
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                              hintText: 'Correo',
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide.none)),
-                          onChanged: (value) {
-                            setState(() {
-                              _email = value.trim();
-                            });
-                          },
-                        ),
-                      ),
-                      SizedBox(height: isMobile(context) ? 10 : 20),
-                      Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.only(top: 10.0),
-                        padding: EdgeInsets.only(left: 10.0),
-                        decoration: BoxDecoration(
-                            color: Color.fromRGBO(142, 142, 147, 1.2),
-                            borderRadius: BorderRadius.circular(20.0)),
-                        child: TextFormField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                              hintText: 'Contraseña',
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide.none)),
-                          onChanged: (value) {
-                            setState(() {
-                              _password = value.trim();
-                            });
-                          },
-                        ),
-                      ),
-                      SizedBox(height: isMobile(context) ? 20 : 20),
-                      Container(
-                        height: 45,
-                        width: double.infinity,
-                        child: MainButton(
-                            title: 'Registrarse',
-                            tapEvent: () {
-                              auth.createUserWithEmailAndPassword(
-                                  email: _email, password: _password);
-                              Navigator.pushNamed(context, 'login');
-                            },
-                            color: myPrimaryColor),
-                      ),
-                      SizedBox(height: 20),
-                      Wrap(
-                        children: [
+      appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: myWhiteColor,
+          elevation: 1,
+          title: Text(
+            'Crear cuenta',
+            style: TextStyle(
+                color: myPrimaryColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 24),
+          )),
+      body: BlocBuilder<AuthCubit, AuthState>(builder: (_, state) {
+        return Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Container(
+              margin: EdgeInsets.symmetric(
+                  vertical: isMobile(context) ? 20 : 20, horizontal: 40),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: !isMobile(context) ? 90 : 10),
+                      child: Column(
+                        mainAxisAlignment: !isMobile(context)
+                            ? MainAxisAlignment.center
+                            : MainAxisAlignment.center,
+                        crossAxisAlignment: !isMobile(context)
+                            ? CrossAxisAlignment.center
+                            : CrossAxisAlignment.center,
+                        children: <Widget>[
+                          SizedBox(height: isMobile(context) ? 20 : 20),
                           Text(
-                            'Ya tengo una cuenta  ',
+                            'Registrate con tu email',
                             textAlign: isMobile(context)
                                 ? TextAlign.center
                                 : TextAlign.start,
                             style: TextStyle(
-                                fontSize: isDesktop(context) ? 30 : 13,
-                                fontWeight: FontWeight.w300,
-                                color: myGreyColor),
+                                fontSize: isDesktop(context) ? 32 : 18,
+                                fontWeight: FontWeight.w400,
+                                color: myTextColor),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, 'login');
-                            },
-                            child: Text(
-                              ' Ingresar',
-                              textAlign: isMobile(context)
-                                  ? TextAlign.center
-                                  : TextAlign.start,
-                              style: TextStyle(
-                                  fontSize: isDesktop(context) ? 30 : 13,
-                                  fontWeight: FontWeight.bold,
-                                  color: myPrimaryColor),
+                          SizedBox(height: isMobile(context) ? 20 : 20),
+                          TextFormField(
+                            controller: _emailController,
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: InputDecoration(
+                              labelText: 'Correo',
                             ),
+                            validator: emailValidator,
                           ),
+                          SizedBox(height: isMobile(context) ? 10 : 20),
+                          TextFormField(
+                            obscureText: true,
+                            controller: _passwordController,
+                            decoration: InputDecoration(
+                              labelText: 'Contraseña',
+                            ),
+                            validator: passwordValidator,
+                          ),
+                          SizedBox(height: isMobile(context) ? 10 : 20),
+                          TextFormField(
+                            obscureText: true,
+                            controller: _confirmPasswordController,
+                            decoration: InputDecoration(
+                              labelText: 'Confirmar contraseña',
+                            ),
+                            validator: passwordValidator,
+                          ),
+                          SizedBox(height: isMobile(context) ? 10 : 20),
+                          if (state is AuthSigningIn)
+                            Center(child: CircularProgressIndicator()),
+                          if (state is AuthError)
+                            Text(state.message,
+                                style:
+                                    TextStyle(color: Colors.red, fontSize: 24)),
+                          /*Container(
+                              decoration: BoxDecoration(
+                                  color: Color.fromRGBO(142, 142, 147, 1.2),
+                                  borderRadius: BorderRadius.circular(20.0)),
+                              child: TextFormField(
+                                controller: _emailController,
+                                validator: emailValidator,
+                                keyboardType: TextInputType.emailAddress,
+                                decoration: InputDecoration(
+                                    hintText: 'Correo',
+                                    border: OutlineInputBorder(
+                                        borderSide: BorderSide.none)),
+                              ),
+                            ),
+                            SizedBox(height: isMobile(context) ? 10 : 20),
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Color.fromRGBO(142, 142, 147, 1.2),
+                                  borderRadius: BorderRadius.circular(20.0)),
+                              child: TextFormField(
+                                controller: _passwordController,
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                    hintText: 'Contraseña',
+                                    border: OutlineInputBorder(
+                                        borderSide: BorderSide.none)),
+                              ),
+                            ),
+                            SizedBox(height: isMobile(context) ? 10 : 20),
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Color.fromRGBO(142, 142, 147, 1.2),
+                                  borderRadius: BorderRadius.circular(20.0)),
+                              child: TextFormField(
+                                controller: _confirmPasswordController,
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                    hintText: 'Confirmar Contraseña',
+                                    border: OutlineInputBorder(
+                                        borderSide: BorderSide.none)),
+                              ),
+                            ),*/
+                          SizedBox(height: isMobile(context) ? 10 : 20),
+                          Container(
+                            height: 50,
+                            width: double.infinity,
+                            child: MainButton(
+                                title: 'Crear',
+                                tapEvent: () {
+                                  if (_formKey.currentState?.validate() ==
+                                      true) {
+                                    context
+                                        .read<AuthCubit>()
+                                        .createUserWithEmailAndPassword(
+                                            _emailController.text,
+                                            _passwordController.text);
+                                  }
+                                },
+                                color: myPrimaryColor),
+                          ),
+                          SizedBox(height: 20),
+                          Wrap(
+                            children: [
+                              Text(
+                                'Ya tengo una cuenta.  ',
+                                textAlign: isMobile(context)
+                                    ? TextAlign.center
+                                    : TextAlign.start,
+                                style: TextStyle(
+                                    fontSize: isDesktop(context) ? 30 : 16,
+                                    fontWeight: FontWeight.w300,
+                                    color: myTextColor),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.popAndPushNamed(
+                                      context, Routes.signInEmail);
+                                },
+                                child: Text(
+                                  ' Ingresar',
+                                  textAlign: isMobile(context)
+                                      ? TextAlign.center
+                                      : TextAlign.start,
+                                  style: TextStyle(
+                                      fontSize: isDesktop(context) ? 30 : 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: myPrimaryColor),
+                                ),
+                              ),
+                            ],
+                          )
                         ],
-                      )
-                    ],
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      )),
+        );
+      }),
     );
   }
 }
-/*
-Widget _emailInput(onChange()) {
-  return Container(
-    width: double.infinity,
-    margin: EdgeInsets.only(top: 10.0),
-    padding: EdgeInsets.only(left: 10.0),
-    decoration: BoxDecoration(
-        color: Color.fromRGBO(142, 142, 147, 1.2),
-        borderRadius: BorderRadius.circular(20.0)),
-    child: TextFormField(
-      keyboardType: TextInputType.emailAddress,
-      decoration: InputDecoration(
-          hintText: 'Correo',
-          border: OutlineInputBorder(borderSide: BorderSide.none)),
-    ),
-  );
-}
-
-Widget _passwordInput() {
-  return Container(
-    width: double.infinity,
-    margin: EdgeInsets.only(top: 10.0),
-    padding: EdgeInsets.only(left: 10.0),
-    decoration: BoxDecoration(
-        color: Color.fromRGBO(142, 142, 147, 1.2),
-        borderRadius: BorderRadius.circular(20.0)),
-    child: TextFormField(
-      obscureText: true,
-      decoration: InputDecoration(
-          hintText: 'Contraseña',
-          border: OutlineInputBorder(borderSide: BorderSide.none)),
-    ),
-  );
-}
-*/

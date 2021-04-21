@@ -2,6 +2,7 @@ import 'package:app_clinica/responsive.dart';
 import 'package:app_clinica/src/bloc/auth_cubit.dart';
 import 'package:app_clinica/src/colors/colors.dart';
 import 'package:app_clinica/src/features/presentation/commons_widgets/buttons/login_button.dart';
+import 'package:app_clinica/src/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_indicator/page_indicator.dart';
@@ -32,7 +33,7 @@ class _IntroPager extends HookWidget {
             _DescriptionPage(),
             _DescriptionPage(),
             _DescriptionPage(),
-            _WelcomePage(),
+            _LoginPage(),
           ],
         ),
         length: 4,
@@ -122,7 +123,7 @@ class _DescriptionPage extends StatelessWidget {
   }
 }
 
-class _WelcomePage extends StatelessWidget {
+class _LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isSigningIn = context.watch<AuthCubit>().state is AuthSigningIn;
@@ -183,27 +184,31 @@ class _WelcomePage extends StatelessWidget {
                           runSpacing: 10,
                           children: <Widget>[
                             LoginButton(
-                              text: 'Ingresar con correo',
-                              imagePath: 'images/loginIcon.png',
-                              color: myPrimaryColor,
-                              textColor: myWhiteColor,
-                              onTap: () {
-                                Navigator.pushNamed(context, 'login');
-                              },
-                            ),
+                                text: 'Ingresar con correo',
+                                imagePath: 'images/loginIcon.png',
+                                color: myPrimaryColor,
+                                textColor: myWhiteColor,
+                                onTap: () {
+                                  context.read<AuthCubit>().reset();
+                                  Navigator.pushNamed(
+                                      context, Routes.signInEmail);
+                                }),
                             LoginButton(
                               text: 'Ingresar con Google',
                               imagePath: 'images/loginIcon.png',
                               color: myWhiteColor,
                               textColor: myGreyColor,
-                              onTap: () {},
+                              onTap: () =>
+                                  context.read<AuthCubit>().signInWithGoogle(),
                             ),
                             LoginButton(
                               text: 'Ingresar con Facebook',
                               imagePath: 'images/loginIcon.png',
                               color: myBlueColor,
                               textColor: myWhiteColor,
-                              onTap: () {},
+                              onTap: () => context
+                                  .read<AuthCubit>()
+                                  .signInWithFacebook(),
                             ),
                             LoginButton(
                               text: 'Ingresar anonimamente',
@@ -217,12 +222,13 @@ class _WelcomePage extends StatelessWidget {
                             Container(
                               alignment: Alignment.center,
                               child: OutlinedButton(
-                                child: Text('Crear una cuenta',
-                                    style: TextStyle(color: myTextColor)),
-                                onPressed: () {
-                                  Navigator.pushNamed(context, 'singin');
-                                },
-                              ),
+                                  child: Text('Crear cuenta',
+                                      style: TextStyle(color: myTextColor)),
+                                  onPressed: () {
+                                    context.read<AuthCubit>().reset();
+                                    Navigator.pushNamed(
+                                        context, Routes.createAcount);
+                                  }),
                             ),
                           ],
                         ),
@@ -230,12 +236,6 @@ class _WelcomePage extends StatelessWidget {
                     ],
                   ),
                 )),
-                if (isDesktop(context) || isTab(context))
-                  Expanded(
-                      child: Image.asset(
-                    'images/logo.jpg',
-                    height: size.height * 0.7,
-                  ))
               ],
             )),
       ),
