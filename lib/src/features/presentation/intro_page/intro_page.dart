@@ -35,20 +35,20 @@ class _IntroPager extends HookWidget {
                 textTitle: 'Clinicapp',
                 textSubTitle: 'Sientete seguro',
                 textIntroDetail:
-                    'textIntroDetail sfsdfsdfsdf dfsdfsdfsdfsd sdfsdfsdfsfsd sdfsdfsdfsdf',
-                imagePath: 'images/logo.jpg'),
+                    'Somos una Institución de salud que promueve y restaura la salud integral de las personas.',
+                imagePath: 'images/logo1.jpg'),
             DescriptionPage(
                 textTitle: 'Clinicapp',
-                textSubTitle: 'Estamos cerca',
+                textSubTitle: 'Cerca de ti',
                 textIntroDetail:
-                    'textIntroDetail sfsdfsdfsdf dfsdfsdfsdfsd sdfsdfsdfsfsd sdfsdfsdfsdf',
-                imagePath: 'images/logo2.png'),
+                    'Estamos ubicados en Calle Ricardo Palma 838 065 Iquitos, Perú . Abierto ahora',
+                imagePath: 'images/logo8.jpg'),
             DescriptionPage(
                 textTitle: 'Clinicapp',
                 textSubTitle: 'Todo lo importante',
                 textIntroDetail:
-                    'textIntroDetail sfsdfsdfsdf dfsdfsdfsdfsd sdfsdfsdfsfsd sdfsdfsdfsdf',
-                imagePath: 'images/logo.jpg'),
+                    'Servicio de salud y seguridad en el trabajo · Servicio de emergencia y rescate · Hospital',
+                imagePath: 'images/logo3.jpg'),
             _LoginPage(),
           ],
         ),
@@ -85,6 +85,11 @@ class _LoginPage extends StatelessWidget {
                         ? CrossAxisAlignment.center
                         : CrossAxisAlignment.center,
                     children: <Widget>[
+                      /*Icon(
+                        Icons.medical_services_outlined,
+                        size: isDesktop(context) ? 64 : 45,
+                        color: mySecondaryColor,
+                      ),*/
                       RichText(
                           text: TextSpan(children: [
                         TextSpan(
@@ -156,6 +161,10 @@ class _LoginPage extends StatelessWidget {
                               Container(
                                 alignment: Alignment.center,
                                 child: OutlinedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        onSurface: myPrimaryColor,
+                                        side:
+                                            BorderSide(color: myPrimaryColor)),
                                     child: Text('Crear cuenta',
                                         style: TextStyle(color: myTextColor)),
                                     onPressed: () {
