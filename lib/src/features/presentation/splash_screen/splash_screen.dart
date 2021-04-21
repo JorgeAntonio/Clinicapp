@@ -1,3 +1,4 @@
+import 'package:app_clinica/responsive.dart';
 import 'package:app_clinica/src/colors/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,9 +20,13 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text('clinicapp',
+                style: TextStyle(
+                    fontSize: isMobile(context) ? 45 : 64,
+                    fontWeight: FontWeight.bold,
+                    color: myPrimaryColor)),
             CircularProgressIndicator(),
             SizedBox(height: 24),
-            Text('Loading', style: TextStyle(fontSize: 24))
           ],
         ),
       ),
