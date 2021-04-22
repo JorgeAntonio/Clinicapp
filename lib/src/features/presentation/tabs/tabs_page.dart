@@ -39,7 +39,7 @@ class _TabsPageState extends State<TabsPage> {
 
   Widget _bottomNavigationBar(BuildContext context) {
     return BottomNavigationBar(
-        iconSize: 30.0,
+        iconSize: 24.0,
         selectedItemColor: myPrimaryColor,
         unselectedItemColor: Colors.grey,
         currentIndex: _selectedItemIndex,

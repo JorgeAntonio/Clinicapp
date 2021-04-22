@@ -1,4 +1,5 @@
 import 'package:app_clinica/src/bloc/auth_cubit.dart';
+import 'package:app_clinica/src/colors/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,8 +12,13 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bgGreyPage,
       appBar: AppBar(
-        title: Text('Perfil'),
+        backgroundColor: myWhiteColor,
+        title: Text(
+          'Perfil',
+          style: TextStyle(color: myPrimaryColor),
+        ),
       ),
       body: BlocBuilder<AuthCubit, AuthState>(
           buildWhen: (previous, current) => current is AuthSignedIn,
@@ -21,7 +27,16 @@ class _ProfilePageState extends State<ProfilePage> {
             return Center(
               child: Column(
                 children: [
-                  Text('Usurio: ${authUser.uid}'),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      child: Icon(
+                        Icons.person_outline,
+                        size: 70,
+                      ),
+                    ),
+                  ),
+                  Text('Usuario: ${authUser.uid}'),
                   SizedBox(height: 16),
                   ElevatedButton(
                       onPressed: () => context.read<AuthCubit>().signOut(),

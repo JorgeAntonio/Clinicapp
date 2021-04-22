@@ -1,3 +1,6 @@
+import 'package:app_clinica/src/colors/colors.dart';
+import 'package:app_clinica/src/features/presentation/commons_widgets/cards/especialities_card.dart';
+import 'package:app_clinica/src/features/presentation/commons_widgets/headers/header_text.dart';
 import 'package:flutter/material.dart';
 
 class DoctorsPage extends StatefulWidget {
@@ -8,9 +11,80 @@ class DoctorsPage extends StatefulWidget {
 class _DoctorsPageState extends State<DoctorsPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text('Doctors'),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: myWhiteColor,
+        title: Text(
+          'Especialidades',
+          style: TextStyle(color: myPrimaryColor),
+        ),
+        actions: [
+          Container(
+            padding: EdgeInsets.all(8),
+            child: Row(
+              children: [
+                Text(
+                  'Nueva cita',
+                  style: TextStyle(
+                      color: myGreyColor, fontWeight: FontWeight.w500),
+                ),
+                Container(
+                    width: 40.0,
+                    height: 40.0,
+                    margin: EdgeInsets.only(left: 8),
+                    decoration: BoxDecoration(
+                        color: mySecondaryColor,
+                        borderRadius: BorderRadius.circular(30)),
+                    child: IconButton(
+                        icon: Icon(
+                          Icons.add_circle_outline_sharp,
+                          size: 25.0,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          //Navigator.pushNamed(context, 'filter');
+                        }))
+              ],
+            ),
+          )
+        ],
+      ),
+      backgroundColor: bgGreyPage,
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  child: headerText(
+                      texto: 'Todas las especialidades',
+                      textAlign: TextAlign.start,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: myTextColor),
+                ),
+              ),
+              especialitiesCard(context, 'Medicina general', '4 Especialistas',
+                  AssetImage('images/stethoscope.png'), myTextColor, () {}),
+              especialitiesCard(context, 'Pediatria', '2 Especialistas',
+                  AssetImage('images/newborn.png'), myTextColor, () {}),
+              especialitiesCard(context, 'Oftalmologia', '1 Especialistas',
+                  AssetImage('images/ophthalmology.png'), myTextColor, () {}),
+              especialitiesCard(context, 'Cardiologia', '2 Especialistas',
+                  AssetImage('images/cardiology.png'), myTextColor, () {}),
+              especialitiesCard(context, 'Obstetricia', '3 Especialistas',
+                  AssetImage('images/pregnancy.png'), myTextColor, () {}),
+              especialitiesCard(context, 'Cirugia', '2 Especialistas',
+                  AssetImage('images/surgery.png'), myTextColor, () {}),
+              especialitiesCard(context, 'Odontologia', '2 Especialistas',
+                  AssetImage('images/tooth.png'), myTextColor, () {}),
+              especialitiesCard(context, 'Laboratorio', '2 Especialistas',
+                  AssetImage('images/test-tubes.png'), myTextColor, () {})
+            ],
+          ),
+        ),
       ),
     );
   }

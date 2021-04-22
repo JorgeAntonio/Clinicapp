@@ -2,6 +2,7 @@ import 'package:app_clinica/responsive.dart';
 import 'package:app_clinica/src/bloc/auth_cubit.dart';
 import 'package:app_clinica/src/colors/colors.dart';
 import 'package:app_clinica/src/features/presentation/commons_widgets/buttons/main_button.dart';
+import 'package:app_clinica/src/features/presentation/singIn_page/model/firebase.dart';
 import 'package:app_clinica/src/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,7 +38,7 @@ class _SingInPageState extends State<SingInPage> {
       appBar: AppBar(
           centerTitle: true,
           backgroundColor: myWhiteColor,
-          elevation: 1,
+          elevation: 0,
           title: Text(
             'Crear cuenta',
             style: TextStyle(
@@ -111,48 +112,6 @@ class _SingInPageState extends State<SingInPage> {
                             Text(state.message,
                                 style:
                                     TextStyle(color: Colors.red, fontSize: 24)),
-                          /*Container(
-                              decoration: BoxDecoration(
-                                  color: Color.fromRGBO(142, 142, 147, 1.2),
-                                  borderRadius: BorderRadius.circular(20.0)),
-                              child: TextFormField(
-                                controller: _emailController,
-                                validator: emailValidator,
-                                keyboardType: TextInputType.emailAddress,
-                                decoration: InputDecoration(
-                                    hintText: 'Correo',
-                                    border: OutlineInputBorder(
-                                        borderSide: BorderSide.none)),
-                              ),
-                            ),
-                            SizedBox(height: isMobile(context) ? 10 : 20),
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Color.fromRGBO(142, 142, 147, 1.2),
-                                  borderRadius: BorderRadius.circular(20.0)),
-                              child: TextFormField(
-                                controller: _passwordController,
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                    hintText: 'Contraseña',
-                                    border: OutlineInputBorder(
-                                        borderSide: BorderSide.none)),
-                              ),
-                            ),
-                            SizedBox(height: isMobile(context) ? 10 : 20),
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Color.fromRGBO(142, 142, 147, 1.2),
-                                  borderRadius: BorderRadius.circular(20.0)),
-                              child: TextFormField(
-                                controller: _confirmPasswordController,
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                    hintText: 'Confirmar Contraseña',
-                                    border: OutlineInputBorder(
-                                        borderSide: BorderSide.none)),
-                              ),
-                            ),*/
                           SizedBox(height: isMobile(context) ? 10 : 20),
                           Container(
                             height: 50,
@@ -167,6 +126,8 @@ class _SingInPageState extends State<SingInPage> {
                                         .createUserWithEmailAndPassword(
                                             _emailController.text,
                                             _passwordController.text);
+                                    addUser(_emailController.text,
+                                        _passwordController.text);
                                   }
                                 },
                                 color: myPrimaryColor),

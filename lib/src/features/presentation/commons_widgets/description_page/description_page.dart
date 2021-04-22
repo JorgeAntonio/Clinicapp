@@ -63,6 +63,7 @@ class DescriptionPage extends StatelessWidget {
                                 fontWeight: FontWeight.w800,
                                 color: myTextColor)),
                       ])),
+                      SizedBox(height: 10),
                       Text(
                         textIntroDetail,
                         textAlign: isMobile(context)

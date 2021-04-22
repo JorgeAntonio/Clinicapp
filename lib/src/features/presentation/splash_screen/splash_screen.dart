@@ -20,7 +20,12 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('clinicapp',
+            Icon(
+              Icons.medical_services_outlined,
+              size: isMobile(context) ? 45 : 64,
+              color: mySecondaryColor,
+            ),
+            Text('Clinicapp',
                 style: TextStyle(
                     fontSize: isMobile(context) ? 45 : 64,
                     fontWeight: FontWeight.bold,
