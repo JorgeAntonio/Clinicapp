@@ -1,22 +1,13 @@
 import 'package:flutter/material.dart';
-
 //PAGES
-
+import 'package:app_clinica/src/features/presentation/doctor_profile/doctor_profile.dart';
+import 'package:app_clinica/src/features/presentation/especialities_details_page/especialiaties_details_page.dart';
+import 'package:app_clinica/src/features/presentation/new_schedule_page/new_schedule_page.dart';
 import 'package:app_clinica/src/features/presentation/login_page/view/login_page.dart';
 import 'package:app_clinica/src/features/presentation/tabs/tabs_page.dart';
-import 'package:app_clinica/src/features/presentation/tabs/specialities_tabs/view/specialities_page.dart';
 import 'package:app_clinica/src/features/presentation/singIn_page/view/singIn_page.dart';
 import 'package:app_clinica/src/features/presentation/splash_screen/splash_screen.dart';
 import 'package:app_clinica/src/features/presentation/intro_page/intro_page.dart';
-
-final routes = <String, WidgetBuilder>{
-  'login': (BuildContext context) => LoginPage(),
-  'tabs': (BuildContext context) => TabsPage(),
-  'doctors': (BuildContext context) => DoctorsPage(),
-  'singin': (BuildContext context) => SingInPage(),
-  'splashscreen': (BuildContext context) => SplashScreen(),
-  'introduction': (BuildContext context) => IntroPage()
-};
 
 class Routes {
   static const splash = "/";
@@ -24,6 +15,9 @@ class Routes {
   static const tabs = "/tabs";
   static const createAcount = "/createAcount";
   static const signInEmail = "/signInEmail";
+  static const especialistDetailsPage = "/especialistDetails";
+  static const doctorsProfilePage = "/doctorsProfilePage";
+  static const newSchedulePage = "/newSchedulePage";
 
   static Route routes(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -37,6 +31,12 @@ class Routes {
         return _builtRoute(SingInPage.create);
       case signInEmail:
         return _builtRoute(LoginPage.create);
+      case especialistDetailsPage:
+        return _builtRoute(EspecialistDetailsPage.create);
+      case doctorsProfilePage:
+        return _builtRoute(DoctorsProfilePage.create);
+      case newSchedulePage:
+        return _builtRoute(NewSchedulePage.create);
       default:
         throw Exception('Route does not exist');
     }

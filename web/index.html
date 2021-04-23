@@ -33,20 +33,30 @@
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
-       <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
-       <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+
+  <!-- Add for Firebase Storage: https://pub.dev/packages/firebase_storage -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-storage.js"></script>
+
+  <!-- Add for Cloud Firestore: https://pub.dev/packages/cloud_firestore -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+
+  <!-- Add for Firebase Auth: https://pub.dev/packages/firebase_auth -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+
        <script>
+        // Your web app's Firebase configuration
         var firebaseConfig = {
-          apiKey: "...",
-          authDomain: "[YOUR_PROJECT].firebaseapp.com",
-          databaseURL: "https://[YOUR_PROJECT].firebaseio.com",
-          projectId: "[YOUR_PROJECT]",
-          storageBucket: "[YOUR_PROJECT].appspot.com",
-          messagingSenderId: "...",
-          appId: "1:...:web:...",
-          measurementId: "G-...",
+          apiKey: "AIzaSyCV8gjAcxoFm7_bPcNkAssUCa8LaamsNDI",
+          authDomain: "ia-d57b6.firebaseapp.com",
+          databaseURL: "https://ia-d57b6-default-rtdb.firebaseio.com",
+          projectId: "ia-d57b6",
+          storageBucket: "ia-d57b6.appspot.com",
+          messagingSenderId: "894881254178",
+          appId: "1:894881254178:web:7c8d24d4b151ef3802737b"
         };
-  
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
       </script>

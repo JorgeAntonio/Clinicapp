@@ -5,7 +5,7 @@ Widget backButton(BuildContext context, Color color) {
       icon: Icon(
         Icons.arrow_back,
         color: color,
-        size: 28.0,
+        size: 24.0,
       ),
       onPressed: () {
         Navigator.pop(context);

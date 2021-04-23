@@ -2,6 +2,7 @@ import 'package:app_clinica/responsive.dart';
 import 'package:app_clinica/src/colors/colors.dart';
 import 'package:app_clinica/src/features/presentation/commons_widgets/cards/menu_card.dart';
 import 'package:app_clinica/src/features/presentation/commons_widgets/headers/header_text.dart';
+import 'package:app_clinica/src/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swipper/flutter_card_swiper.dart';
 
@@ -11,37 +12,79 @@ class ModuloTab extends StatelessWidget {
     return SafeArea(
       child: CustomScrollView(
         slivers: [
+          SliverAppBar(
+            elevation: 5,
+            backgroundColor: myWhiteColor,
+            title: Text(
+              'Clinicapp',
+              style: TextStyle(color: myPrimaryColor, fontSize: 26),
+            ),
+            actions: [
+              Container(
+                padding: EdgeInsets.all(8),
+                child: Row(
+                  children: [
+                    Text(
+                      'Nueva cita',
+                      style: TextStyle(
+                          color: myGreyColor, fontWeight: FontWeight.w500),
+                    ),
+                    Container(
+                        width: 40.0,
+                        height: 40.0,
+                        margin: EdgeInsets.only(left: 8),
+                        decoration: BoxDecoration(
+                            color: mySecondaryColor,
+                            borderRadius: BorderRadius.circular(30)),
+                        child: IconButton(
+                            icon: Icon(
+                              Icons.add_circle_outline_sharp,
+                              size: 25.0,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, Routes.newSchedulePage);
+                            }))
+                  ],
+                ),
+              )
+            ],
+          ),
           SliverList(
               delegate: SliverChildListDelegate([
-            _topBar(context),
+            //_topBar(context),
             Container(
               decoration: BoxDecoration(color: bgGreyPage),
               padding: EdgeInsets.all(8),
               child: Column(
                 children: [
-                  Container(
-                    alignment: isMobile(context)
-                        ? Alignment.centerLeft
-                        : Alignment.centerLeft,
-                    child: Wrap(
-                      runSpacing: 10,
-                      children: [
-                        headerText(
-                            texto: 'COVID-19',
-                            color: myTextColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: isMobile(context) ? 26 : 45),
-                        SizedBox(width: 10),
-                        Padding(
-                          padding:
-                              EdgeInsets.only(top: isMobile(context) ? 8 : 20),
-                          child: headerText(
-                              texto: 'Sugerencias',
+                  Padding(
+                    padding: EdgeInsets.only(left: 8),
+                    child: Container(
+                      alignment: isMobile(context)
+                          ? Alignment.centerLeft
+                          : Alignment.centerLeft,
+                      child: Wrap(
+                        runSpacing: 10,
+                        children: [
+                          headerText(
+                              texto: 'COVID-19',
                               color: myTextColor,
-                              fontWeight: FontWeight.w500,
-                              fontSize: isMobile(context) ? 16 : 24),
-                        ),
-                      ],
+                              fontWeight: FontWeight.bold,
+                              fontSize: isMobile(context) ? 26 : 45),
+                          SizedBox(width: 10),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: isMobile(context) ? 8 : 20),
+                            child: headerText(
+                                texto: 'Sugerencias',
+                                color: myTextColor,
+                                fontWeight: FontWeight.w500,
+                                fontSize: isMobile(context) ? 16 : 24),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   _sliderCollections(),
@@ -51,14 +94,17 @@ class ModuloTab extends StatelessWidget {
           ])),
           SliverList(
               delegate: SliverChildListDelegate([
-            Container(
-              padding: EdgeInsets.all(8),
-              decoration: BoxDecoration(color: bgGreyPage),
-              child: headerText(
-                  texto: 'Modulo de atencion',
-                  color: myTextColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: isMobile(context) ? 26 : 45),
+            Padding(
+              padding: const EdgeInsets.only(left: 8),
+              child: Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(color: bgGreyPage),
+                child: headerText(
+                    texto: 'Modulo de atencion',
+                    color: myTextColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: isMobile(context) ? 26 : 45),
+              ),
             )
           ])),
           SliverGrid.count(
@@ -78,42 +124,6 @@ class ModuloTab extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget _topBar(BuildContext context) {
-  return Container(
-    padding: EdgeInsets.all(8),
-    child: Row(
-      children: [
-        headerText(
-            texto: 'Clinicapp',
-            color: myPrimaryColor,
-            fontWeight: FontWeight.bold,
-            fontSize: isMobile(context) ? 32 : 45),
-        Spacer(),
-        Text(
-          'Nueva cita',
-          style: TextStyle(color: myGreyColor, fontWeight: FontWeight.w500),
-        ),
-        Container(
-            width: 40.0,
-            height: 40.0,
-            margin: EdgeInsets.only(left: 10),
-            decoration: BoxDecoration(
-                color: mySecondaryColor,
-                borderRadius: BorderRadius.circular(30)),
-            child: IconButton(
-                icon: Icon(
-                  Icons.add_circle_outline_sharp,
-                  size: 25.0,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  //Navigator.pushNamed(context, 'filter');
-                }))
-      ],
-    ),
-  );
 }
 
 Widget _sliderCollections() {
