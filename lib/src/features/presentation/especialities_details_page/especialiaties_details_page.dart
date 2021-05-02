@@ -17,8 +17,8 @@ class _EspecialistDetailsPageState extends State<EspecialistDetailsPage> {
     return Scaffold(
         backgroundColor: bgGreyPage,
         appBar: AppBar(
-          elevation: 0,
-          backgroundColor: bgGreyPage,
+          elevation: 1,
+          backgroundColor: myWhiteColor,
           title: Text(
             'Especialistas',
             style: TextStyle(color: myTextColor),

@@ -1,4 +1,5 @@
 import 'package:app_clinica/src/colors/colors.dart';
+import 'package:app_clinica/src/features/presentation/commons_widgets/appBar/appBar.dart';
 import 'package:app_clinica/src/features/presentation/commons_widgets/cards/especialities_card.dart';
 import 'package:app_clinica/src/features/presentation/commons_widgets/headers/header_text.dart';
 import 'package:app_clinica/src/routes/routes.dart';
@@ -14,56 +15,23 @@ class _DoctorsPageState extends State<DoctorsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 2,
+        elevation: 1,
         backgroundColor: myWhiteColor,
-        title: Text(
-          'Especialidades',
-          style: TextStyle(color: myPrimaryColor, fontSize: 24),
-        ),
-        actions: [
-          Container(
-            padding: EdgeInsets.all(8),
-            child: Row(
-              children: [
-                Text(
-                  'Nueva cita',
-                  style: TextStyle(
-                      color: myGreyColor, fontWeight: FontWeight.w500),
-                ),
-                Container(
-                    width: 40.0,
-                    height: 40.0,
-                    margin: EdgeInsets.only(left: 8),
-                    decoration: BoxDecoration(
-                        color: mySecondaryColor,
-                        borderRadius: BorderRadius.circular(30)),
-                    child: IconButton(
-                        icon: Icon(
-                          Icons.add_circle_outline_sharp,
-                          size: 25.0,
-                          color: Colors.white,
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, Routes.newSchedulePage);
-                        }))
-              ],
-            ),
-          )
-        ],
+        title: topBar(context),
       ),
       backgroundColor: bgGreyPage,
       body: SingleChildScrollView(
         child: Container(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.only(top: 8, bottom: 8),
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: Container(
                     alignment: Alignment.centerLeft,
                     child: headerText(
-                        texto: 'Todas las especialidades',
+                        texto: 'Especialidades',
                         textAlign: TextAlign.start,
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -76,19 +44,19 @@ class _DoctorsPageState extends State<DoctorsPage> {
                     '4 Especialistas',
                     AssetImage('images/stethoscope.png'),
                     myTextColor, () {
-                  Navigator.pushNamed(context, Routes.especialistDetailsPage);
+                  Navigator.pushNamed(context, Routes.findDoctorsPage);
                 }),
                 especialitiesCard(context, 'Pediatria', '2 Especialistas',
                     AssetImage('images/newborn.png'), myTextColor, () {
-                  Navigator.pushNamed(context, Routes.especialistDetailsPage);
+                  Navigator.pushNamed(context, Routes.findDoctorsPage);
                 }),
                 especialitiesCard(context, 'Oftalmologia', '1 Especialistas',
                     AssetImage('images/ophthalmology.png'), myTextColor, () {
-                  Navigator.pushNamed(context, Routes.especialistDetailsPage);
+                  Navigator.pushNamed(context, Routes.findDoctorsPage);
                 }),
                 especialitiesCard(context, 'Cardiologia', '2 Especialistas',
                     AssetImage('images/cardiology.png'), myTextColor, () {
-                  Navigator.pushNamed(context, Routes.especialistDetailsPage);
+                  Navigator.pushNamed(context, Routes.doctorsProfilePage);
                 }),
                 especialitiesCard(context, 'Obstetricia', '3 Especialistas',
                     AssetImage('images/pregnancy.png'), myTextColor, () {

@@ -1,6 +1,5 @@
 import 'package:app_clinica/responsive.dart';
 import 'package:app_clinica/src/colors/colors.dart';
-import 'package:app_clinica/src/features/presentation/commons_widgets/backButtons/back_button.dart';
 import 'package:app_clinica/src/features/presentation/commons_widgets/headers/header_text.dart';
 import 'package:app_clinica/src/routes/routes.dart';
 import 'package:flutter/material.dart';
@@ -16,17 +15,17 @@ class _DoctorsProfilePageState extends State<DoctorsProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 1,
+        backgroundColor: myWhiteColor,
+        centerTitle: true,
+        title: Text('Doctor', style: TextStyle(color: myTextColor)),
+      ),
       backgroundColor: bgGreyPage,
       body: SingleChildScrollView(
         child: Container(
           child: Column(
             children: [
-              Padding(
-                  padding: EdgeInsets.only(top: 16, left: 8),
-                  child: Container(
-                    alignment: Alignment.centerLeft,
-                    child: backButton(context, myTextColor),
-                  )),
               SizedBox(height: 20),
               _tarjetaDoctor(context),
               SizedBox(height: 20),
@@ -97,7 +96,7 @@ class _DoctorsProfilePageState extends State<DoctorsProfilePage> {
                 padding: EdgeInsets.all(8),
                 width: double.infinity,
                 height: 80,
-                child: _mainButton('Apartar cita', () {
+                child: _mainButton('Agendar cita', () {
                   Navigator.pushNamed(context, Routes.newSchedulePage);
                 }, myPrimaryColor),
               ),

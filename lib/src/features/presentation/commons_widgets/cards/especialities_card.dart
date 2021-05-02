@@ -1,17 +1,17 @@
 import 'package:app_clinica/src/colors/colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../responsive.dart';
+import 'package:app_clinica/responsive.dart';
 
 Widget especialitiesCard(BuildContext context, String title, String details,
     ImageProvider<Object> icon, Color color, Function onClicAction) {
   return Container(
     decoration: BoxDecoration(color: bgGreyPage),
     width: double.infinity,
-    height: 90,
+    height: 80,
     child: Card(
-      elevation: 5,
-      margin: EdgeInsets.all(8),
+      elevation: 1,
+      margin: EdgeInsets.only(left: 8, right: 8, bottom: 8),
       child: InkWell(
         onTap: () {
           onClicAction();
@@ -24,7 +24,7 @@ Widget especialitiesCard(BuildContext context, String title, String details,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(8.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image(
@@ -36,7 +36,7 @@ Widget especialitiesCard(BuildContext context, String title, String details,
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.all(8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -53,6 +53,14 @@ Widget especialitiesCard(BuildContext context, String title, String details,
                           fontSize: isMobile(context) ? 14 : 14),
                     )
                   ],
+                ),
+              ),
+              Spacer(),
+              Padding(
+                padding: EdgeInsets.only(top: 20, right: 8),
+                child: Icon(
+                  Icons.navigate_next,
+                  color: myGreyColor,
                 ),
               )
             ],

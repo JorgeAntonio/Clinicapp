@@ -1,5 +1,6 @@
 import 'package:app_clinica/responsive.dart';
 import 'package:app_clinica/src/colors/colors.dart';
+import 'package:app_clinica/src/features/presentation/commons_widgets/appBar/appBar.dart';
 import 'package:app_clinica/src/features/presentation/commons_widgets/cards/menu_card.dart';
 import 'package:app_clinica/src/features/presentation/commons_widgets/headers/header_text.dart';
 import 'package:app_clinica/src/routes/routes.dart';
@@ -9,118 +10,122 @@ import 'package:flutter_card_swipper/flutter_card_swiper.dart';
 class ModuloTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            elevation: 5,
-            backgroundColor: myWhiteColor,
-            title: Text(
-              'Clinicapp',
-              style: TextStyle(color: myPrimaryColor, fontSize: 26),
-            ),
-            actions: [
+    return Scaffold(
+      backgroundColor: bgGreyPage,
+      appBar: AppBar(
+        elevation: 1,
+        backgroundColor: myWhiteColor,
+        title: topBar(context),
+      ),
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SliverList(
+                delegate: SliverChildListDelegate([
               Container(
-                padding: EdgeInsets.all(8),
-                child: Row(
+                decoration: BoxDecoration(color: bgGreyPage),
+                padding: EdgeInsets.only(left: 8, top: 8, bottom: 8),
+                child: Column(
                   children: [
-                    Text(
-                      'Nueva cita',
-                      style: TextStyle(
-                          color: myGreyColor, fontWeight: FontWeight.w500),
-                    ),
-                    Container(
-                        width: 40.0,
-                        height: 40.0,
-                        margin: EdgeInsets.only(left: 8),
-                        decoration: BoxDecoration(
-                            color: mySecondaryColor,
-                            borderRadius: BorderRadius.circular(30)),
-                        child: IconButton(
-                            icon: Icon(
-                              Icons.add_circle_outline_sharp,
-                              size: 25.0,
-                              color: Colors.white,
-                            ),
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                  context, Routes.newSchedulePage);
-                            }))
-                  ],
-                ),
-              )
-            ],
-          ),
-          SliverList(
-              delegate: SliverChildListDelegate([
-            //_topBar(context),
-            Container(
-              decoration: BoxDecoration(color: bgGreyPage),
-              padding: EdgeInsets.all(8),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 8),
-                    child: Container(
-                      alignment: isMobile(context)
-                          ? Alignment.centerLeft
-                          : Alignment.centerLeft,
-                      child: Wrap(
-                        runSpacing: 10,
-                        children: [
-                          headerText(
-                              texto: 'COVID-19',
-                              color: myTextColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: isMobile(context) ? 26 : 45),
-                          SizedBox(width: 10),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: isMobile(context) ? 8 : 20),
-                            child: headerText(
-                                texto: 'Sugerencias',
-                                color: myTextColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: isMobile(context) ? 16 : 24),
+                    Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Container(
+                        alignment: isMobile(context)
+                            ? Alignment.centerLeft
+                            : Alignment.centerLeft,
+                        child: Container(
+                          padding: EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(8)),
+                          child: Wrap(
+                            runSpacing: 10,
+                            children: [
+                              Icon(
+                                Icons.warning,
+                                size: isDesktop(context) ? 45 : 18,
+                                color: myWhiteColor,
+                              ),
+                              SizedBox(width: 5),
+                              headerText(
+                                  texto: 'Alerta sobre el Covid-19',
+                                  color: myWhiteColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: isMobile(context) ? 16 : 45),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-                  _sliderCollections(),
-                ],
+                    _sliderCollections(),
+                  ],
+                ),
               ),
+            ])),
+            SliverList(
+                delegate: SliverChildListDelegate([
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Container(
+                  child: headerText(
+                      texto: 'Servicios',
+                      color: myTextColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: isMobile(context) ? 26 : 45),
+                ),
+              ),
+            ])),
+            SliverGrid.count(
+              crossAxisCount: isMobile(context) ? 2 : 4,
+              children: [
+                moduleMenu(context, 'Encontrar doctor',
+                    AssetImage('images/finddoctor.png'), myTextColor, () {
+                  Navigator.pushNamed(context, Routes.findDoctorsPage);
+                }),
+                moduleMenu(
+                    context,
+                    'Historia clinica',
+                    AssetImage('images/medical-history.png'),
+                    myTextColor,
+                    () {}),
+                moduleMenu(context, 'Analisis', AssetImage('images/x-ray.png'),
+                    myTextColor, () {}),
+                moduleMenu(context, 'Laboratorio',
+                    AssetImage('images/test-tubes.png'), myTextColor, () {})
+              ],
             ),
-          ])),
-          SliverList(
-              delegate: SliverChildListDelegate([
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Container(
+            SliverList(
+                delegate: SliverChildListDelegate([
+              Padding(
                 padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(color: bgGreyPage),
-                child: headerText(
-                    texto: 'Modulo de atencion',
-                    color: myTextColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: isMobile(context) ? 26 : 45),
+                child: Container(
+                  decoration: BoxDecoration(color: bgGreyPage),
+                  child: headerText(
+                      texto: 'Actividades',
+                      color: myTextColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: isMobile(context) ? 26 : 45),
+                ),
               ),
-            )
-          ])),
-          SliverGrid.count(
-            crossAxisCount: isMobile(context) ? 2 : 4,
-            children: [
-              moduleMenu(context, 'Historia clinica',
-                  AssetImage('images/medical-history.png'), myTextColor, () {}),
-              moduleMenu(context, 'Analisis', AssetImage('images/x-ray.png'),
-                  myTextColor, () {}),
-              moduleMenu(context, 'Encontrar doctor',
-                  AssetImage('images/finddoctor.png'), myTextColor, () {}),
-              moduleMenu(context, 'Laboratorio',
-                  AssetImage('images/test-tubes.png'), myTextColor, () {})
-            ],
-          ),
-        ],
+              _sliderCollections(),
+            ])),
+            SliverList(
+                delegate: SliverChildListDelegate([
+              Padding(
+                padding: EdgeInsets.all(8),
+                child: Container(
+                  decoration: BoxDecoration(color: bgGreyPage),
+                  child: headerText(
+                      texto: 'Promociones',
+                      color: myTextColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: isMobile(context) ? 26 : 45),
+                ),
+              ),
+              _sliderCollections(),
+            ])),
+          ],
+        ),
       ),
     );
   }
@@ -153,7 +158,8 @@ Widget _tarjetaCollection(BuildContext context) {
       color: myWhiteColor,
       boxShadow: [
         BoxShadow(
-          color: Color.fromRGBO(210, 211, 215, 1.0),
+          color: Colors.red,
+          //color: Color.fromRGBO(210, 211, 215, 1.0),
           offset: Offset(1, 5),
           blurRadius: 10.0,
         )
@@ -168,7 +174,7 @@ Widget _tarjetaCollection(BuildContext context) {
               width: 250,
               height: 180,
               fit: BoxFit.cover,
-              image: AssetImage('images/logo8.jpg')),
+              image: AssetImage('images/covid19.jpg')),
         ),
       ],
     ),

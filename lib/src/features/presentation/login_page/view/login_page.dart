@@ -93,48 +93,6 @@ class _LoginPageState extends State<LoginPage> {
                             Text(state.message,
                                 style:
                                     TextStyle(color: Colors.red, fontSize: 24)),
-                          /*Container(
-                              decoration: BoxDecoration(
-                                  color: Color.fromRGBO(142, 142, 147, 1.2),
-                                  borderRadius: BorderRadius.circular(20.0)),
-                              child: TextFormField(
-                                controller: _emailController,
-                                validator: emailValidator,
-                                keyboardType: TextInputType.emailAddress,
-                                decoration: InputDecoration(
-                                    hintText: 'Correo',
-                                    border: OutlineInputBorder(
-                                        borderSide: BorderSide.none)),
-                              ),
-                            ),
-                            SizedBox(height: isMobile(context) ? 10 : 20),
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Color.fromRGBO(142, 142, 147, 1.2),
-                                  borderRadius: BorderRadius.circular(20.0)),
-                              child: TextFormField(
-                                controller: _passwordController,
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                    hintText: 'Contraseña',
-                                    border: OutlineInputBorder(
-                                        borderSide: BorderSide.none)),
-                              ),
-                            ),
-                            SizedBox(height: isMobile(context) ? 10 : 20),
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Color.fromRGBO(142, 142, 147, 1.2),
-                                  borderRadius: BorderRadius.circular(20.0)),
-                              child: TextFormField(
-                                controller: _confirmPasswordController,
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                    hintText: 'Confirmar Contraseña',
-                                    border: OutlineInputBorder(
-                                        borderSide: BorderSide.none)),
-                              ),
-                            ),*/
                           SizedBox(height: isMobile(context) ? 10 : 20),
                           Container(
                             height: 50,

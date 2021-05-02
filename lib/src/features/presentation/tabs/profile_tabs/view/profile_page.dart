@@ -1,5 +1,6 @@
 import 'package:app_clinica/src/bloc/auth_cubit.dart';
 import 'package:app_clinica/src/colors/colors.dart';
+import 'package:app_clinica/src/features/presentation/commons_widgets/appBar/appBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,11 +15,9 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       backgroundColor: bgGreyPage,
       appBar: AppBar(
+        elevation: 1,
         backgroundColor: myWhiteColor,
-        title: Text(
-          'Perfil',
-          style: TextStyle(color: myPrimaryColor),
-        ),
+        title: topBar(context),
       ),
       body: BlocBuilder<AuthCubit, AuthState>(
           buildWhen: (previous, current) => current is AuthSignedIn,
