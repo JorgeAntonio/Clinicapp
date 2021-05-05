@@ -1,8 +1,7 @@
+import 'package:app_clinica/src/features/presentation/profile_edit_page/view/profile_edit_page.dart';
 import 'package:app_clinica/src/features/presentation/schedule_details_page/scheduleDetailsPage.dart';
 import 'package:flutter/material.dart';
 //PAGES
-import 'package:app_clinica/src/features/presentation/doctor_profile/doctor_profile.dart';
-import 'package:app_clinica/src/features/presentation/especialities_details_page/especialiaties_details_page.dart';
 import 'package:app_clinica/src/features/presentation/new_schedule_page/new_schedule_page.dart';
 import 'package:app_clinica/src/features/presentation/login_page/view/login_page.dart';
 import 'package:app_clinica/src/features/presentation/tabs/tabs_page.dart';
@@ -22,6 +21,7 @@ class Routes {
   static const newSchedulePage = "/newSchedulePage";
   static const findDoctorsPage = "/findDoctorsPage";
   static const scheduleDetailsPage = "/scheduleDetailsPage";
+  static const profileEditPage = "/profileEditPage";
 
   static Route routes(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -35,16 +35,14 @@ class Routes {
         return _builtRoute(SingInPage.create);
       case signInEmail:
         return _builtRoute(LoginPage.create);
-      case especialistDetailsPage:
-        return _builtRoute(EspecialistDetailsPage.create);
-      case doctorsProfilePage:
-        return _builtRoute(DoctorsProfilePage.create);
       case newSchedulePage:
         return _builtRoute(NewSchedulePage.create);
       case findDoctorsPage:
         return _builtRoute(FindDoctorsPage.create);
       case scheduleDetailsPage:
         return _builtRoute(ScheduleDetailsPage.create);
+      case profileEditPage:
+        return _builtRoute(ProfileEditPage.create);
       default:
         throw Exception('Route does not exist');
     }

@@ -16,7 +16,7 @@ Widget especialitiesCard(BuildContext context, String title, String details,
         onTap: () {
           onClicAction();
         },
-        splashColor: mySecondaryColor,
+        splashColor: myPrimaryColor,
         child: Container(
           margin: EdgeInsets.all(isMobile(context) ? 6 : 4),
           child: Row(

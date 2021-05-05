@@ -1,5 +1,4 @@
 import 'package:app_clinica/src/colors/colors.dart';
-import 'package:app_clinica/src/features/presentation/commons_widgets/appBar/appBar.dart';
 import 'package:app_clinica/src/features/presentation/commons_widgets/cards/especialities_card.dart';
 import 'package:app_clinica/src/features/presentation/commons_widgets/headers/header_text.dart';
 import 'package:app_clinica/src/routes/routes.dart';
@@ -14,30 +13,21 @@ class _DoctorsPageState extends State<DoctorsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 1,
-        backgroundColor: myWhiteColor,
-        title: topBar(context),
-      ),
       backgroundColor: bgGreyPage,
+      appBar: AppBar(
+          elevation: 1,
+          backgroundColor: myWhiteColor,
+          title: headerText(
+              texto: 'Especialidades',
+              color: myPrimaryColor,
+              fontSize: 24,
+              fontWeight: FontWeight.w500)),
       body: SingleChildScrollView(
         child: Container(
           child: Padding(
             padding: EdgeInsets.only(top: 8, bottom: 8),
             child: Column(
               children: [
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Container(
-                    alignment: Alignment.centerLeft,
-                    child: headerText(
-                        texto: 'Especialidades',
-                        textAlign: TextAlign.start,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: myTextColor),
-                  ),
-                ),
                 especialitiesCard(
                     context,
                     'Medicina general',

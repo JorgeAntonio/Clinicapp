@@ -16,7 +16,7 @@ Widget moduleMenu(BuildContext context, String title,
         onTap: () {
           onClicAction();
         },
-        splashColor: mySecondaryColor,
+        splashColor: myPrimaryColor,
         child: Center(
           child: Column(
             mainAxisAlignment: isMobile(context)

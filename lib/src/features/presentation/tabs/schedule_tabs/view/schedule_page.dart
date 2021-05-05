@@ -1,5 +1,5 @@
 import 'package:app_clinica/src/colors/colors.dart';
-import 'package:app_clinica/src/features/presentation/commons_widgets/appBar/appBar.dart';
+import 'package:app_clinica/src/features/presentation/commons_widgets/headers/header_text.dart';
 import 'package:flutter/material.dart';
 
 class SchedulePage extends StatefulWidget {
@@ -13,10 +13,13 @@ class _SchedulePageState extends State<SchedulePage> {
     return Scaffold(
       backgroundColor: bgGreyPage,
       appBar: AppBar(
-        elevation: 1,
-        backgroundColor: myWhiteColor,
-        title: topBar(context),
-      ),
+          elevation: 1,
+          backgroundColor: myWhiteColor,
+          title: headerText(
+              texto: 'Citas',
+              color: myPrimaryColor,
+              fontSize: 24,
+              fontWeight: FontWeight.w500)),
       body: Center(
         child: Text('Mis Citas'),
       ),

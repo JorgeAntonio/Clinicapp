@@ -30,13 +30,14 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_auth: ^1.0.3
   firebase_core: ^1.0.3
+  cloud_firestore: ^1.0.7
+  firebase_storage: ^8.0.5
   equatable: ^2.0.0
   flutter_bloc: ^7.0.0
   page_indicator: ^0.4.1
   flutter_hooks: ^0.16.0
   google_sign_in: ^5.0.2
   flutter_facebook_auth: ^3.3.2+2
-  cloud_firestore: ^1.0.6
   flutter_card_swipper: ^0.4.0
   table_calendar: ^3.0.0
   

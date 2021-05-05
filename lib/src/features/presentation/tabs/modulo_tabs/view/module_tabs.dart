@@ -15,7 +15,7 @@ class ModuloTab extends StatelessWidget {
       appBar: AppBar(
         elevation: 1,
         backgroundColor: myWhiteColor,
-        title: topBar(context),
+        title: topBar(context, 'Clinicapp'),
       ),
       body: SafeArea(
         child: CustomScrollView(
