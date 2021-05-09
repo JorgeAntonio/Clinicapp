@@ -1,9 +1,10 @@
 import 'dart:io';
+import 'dart:async';
 
-import 'package:app_clinica/src/model/user.dart';
-import 'package:app_clinica/src/repository/my_user_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:app_clinica/src/model/user.dart';
+import 'package:app_clinica/src/repository/my_user_repository.dart';
 
 class MyUserCubit extends Cubit<MyUserState> {
   final MyUserRepositoryBase _userRepository;
@@ -13,7 +14,7 @@ class MyUserCubit extends Cubit<MyUserState> {
 
   MyUserCubit(this._userRepository) : super(MyUserLoadingState());
 
-  void setImage(File? imageFile) {
+  void setImage(File? imageFile) async {
     _pickedImage = imageFile;
     emit(MyUserReadyState(_user, _pickedImage));
   }
@@ -32,9 +33,9 @@ class MyUserCubit extends Cubit<MyUserState> {
   ) async {
     _user = MyUser(uid, name, lastName, age, image: _user.image);
     emit(MyUserReadyState(_user, _pickedImage, isSaving: true));
-
+    // Just for testing we add a 3 seconds delay: This allows to see the loading in the home page
     await Future.delayed(Duration(seconds: 3));
-    await _userRepository.saveMyUer(_user, _pickedImage);
+    await _userRepository.saveMyUser(_user, _pickedImage);
     emit(MyUserReadyState(_user, _pickedImage));
   }
 }
@@ -54,5 +55,5 @@ class MyUserReadyState extends MyUserState {
   MyUserReadyState(this.user, this.pickedImage, {this.isSaving = false});
 
   @override
-  List<Object?> get props => [user, pickedImage?.path];
+  List<Object?> get props => [user, pickedImage?.path, isSaving];
 }
